@@ -1,0 +1,1 @@
+# Hikey970-hikey-linaro4.9.76
