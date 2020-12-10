@@ -13,5 +13,7 @@ repo sync -j8
 
 
 
-
+编译Hikey-linaro
+-----
 git clone https://github.com/96boards-hikey/linux.git
+make ARCH=arm64 hikey960_defconfig     
