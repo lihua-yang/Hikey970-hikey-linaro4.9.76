@@ -79,9 +79,16 @@ frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk:19: error: _nic.PR
 在/mnt/hikey970/aosp/device/linaro/hikey目录下将github上aosp-device-linaro-hikey中的hikey970文件夹复制到此处，总之，缺少的东西想办法补齐   
 
 make -32
-报错：error: 'out/target/product/hikey970/hi3660-hikey960.dtb', needed by 'out/target/product/hikey970/dt.img', missing and no known rule to make it，想起官方文档中的需要复制两个镜像     
+报错：error: 'out/target/product/hikey970/hi3660-hikey960.dtb', needed by 'out/target/product/hikey970/dt.img', missing and no known rule to make it，想办法从device/linaro/hikey-kernel中复制一个过去
 
+ninja: error: 'device/linaro/hikey/init.hikey970.power.rc', needed by 'out/target/product/hikey970/root/init.hikey970.power.rc', missing and no known rule to make it
+10:41:14 ninja failed with: exit status 1     同样想办法从github文件夹中复制一个过去 
 
+ninja: error: 'device/linaro/hikey/hifi/firmware/hifi-hikey970.img', needed by 'out/target/product/hikey970/system/etc/firmware/hifi/hifi.img', missing and no known rule to make it
+10:44:42 ninja failed with: exit status 1    同上办法    
+
+ninja: error: 'device/linaro/hikey/ai/configs/kirin970/ai_config.xml', needed by 'out/target/product/hikey970/system/vendor/etc/hiai/default/ai_config.xml', missing and no known rule to make it      办法同上，这次复制的是整个ai文件夹     
+       
 
 
    
