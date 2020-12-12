@@ -87,7 +87,36 @@ ninja: error: 'device/linaro/hikey/init.hikey970.power.rc', needed by 'out/targe
 ninja: error: 'device/linaro/hikey/hifi/firmware/hifi-hikey970.img', needed by 'out/target/product/hikey970/system/etc/firmware/hifi/hifi.img', missing and no known rule to make it
 10:44:42 ninja failed with: exit status 1    同上办法    
 
-ninja: error: 'device/linaro/hikey/ai/configs/kirin970/ai_config.xml', needed by 'out/target/product/hikey970/system/vendor/etc/hiai/default/ai_config.xml', missing and no known rule to make it      办法同上，这次复制的是整个ai文件夹     
+ninja: error: 'device/linaro/hikey/ai/configs/kirin970/ai_config.xml', needed by 'out/target/product/hikey970/system/vendor/etc/hiai/default/ai_config.xml', missing and no known rule to make it      办法同上，这次复制的是整个ai文件夹       
+
+编译后没有生成ramdisk.img，按照官方文档编译生成的ramdisk.img在  out/target/product/generic 目录下，复制到out/target/product/hikey970目录下与aosp目录下    
+make -j32 ramdisk
+
+
+编译boot.img
+-------
+cat /mnt/hikey970/aosp/kernel/linux/arch/arm64/boot/Image /mnt/hikey970/aosp/kernel/linux/arch/arm64/boot/dts/hisilicon/kirin970-hikey970.dtb > /mnt/hikey970/aosp/Image-dtb    
+/mnt/hikey970/aosp/out/host/linux-x86/bin/mkbootimg --kernel Image-dtb --ramdisk ramdisk.img --cmdline "androidboot.hardware=hikey970 firmware_class.path=/system/etc/firmware loglevel=15 buildvariant=userdebug androidboot.selinux=permissive clk_ignore_unused=true initrd=0xBE19D000,0x16677F earlycon=pl011,0xfff32000,115200 console=ttyAMA6 androidboot.serialno=54DA9CD5022525E4 clk_ignore_unused=true" -o boot.img    
+cp /mnt/hikey970/aosp/boot.img /mnt/hikey970/aosp/out/target/product/hikey970/boot_built.img    
+
+
+所需镜像与刷录
+--------
+sec_xloader.img用的是Hikey970image中的，原生的，没有编译过的
+fip.bin、l-loader.bin用的是bootloader/l-loader文件夹下的
+out/target/product/hikey970目录下没有system.img，用的是out/target/product/generic目录下的
+$ cd $AOSP_ROOT/bootloader
+$ fastboot flash ptable l-loader/ptable-aosp-64g.img
+$ fastboot reboot
+$ fastboot flash xloader tools-images-hikey970/sec_xloader.img
+$ fastboot flash fip l-loader/fip.bin
+$ fastboot flash fastboot l-loader/l-loader.bin
+$ fastboot reboot
+$ cd $AOSP_ROOT/out/target/product/hikey970
+$ fastboot flash boot boot_built.img // 注意这里不要烧写原生 boot.img
+$ fastboot flash cache cache.img
+$ fastboot flash system system.img
+$ fastboot flash userdata userdata.img
        
 
 
