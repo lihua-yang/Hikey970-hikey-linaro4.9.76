@@ -102,6 +102,19 @@ cp /mnt/hikey970/aosp/boot.img /mnt/hikey970/aosp/out/target/product/hikey970/bo
 
 所需镜像与刷录
 --------
+刷录镜像的官网：https://www.96boards.org/documentation/consumer/hikey/hikey970/installation/linux-fastboot.md.html     
+与hikey960中的刷录内容有区别，与帖子中的刷录内容也有区别
+$ sudo fastboot flash ptable prm_ptable.img    
+$ sudo fastboot flash xloader sec_xloader.img    
+$ sudo fastboot flash fastboot l-loader.bin    
+$ sudo fastboot flash fip fip.bin    
+$ sudo fastboot flash boot boot.img    
+$ sudo fastboot flash cache cache.img    
+$ sudo fastboot flash system system.img    
+$ sudo fastboot flash userdata userdata.img     
+
+以下为尝试帖子中的做法
+-------
 sec_xloader.img用的是Hikey970image中的，原生的，没有编译过的    
 fip.bin、l-loader.bin用的是bootloader/l-loader文件夹下的     
 out/target/product/hikey970目录下没有system.img，用的是out/target/product/generic目录下的    
