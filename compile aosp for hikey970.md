@@ -103,7 +103,7 @@ cp /mnt/hikey970/aosp/boot.img /mnt/hikey970/aosp/out/target/product/hikey970/bo
 所需镜像与刷录
 --------
 刷录镜像的官网：https://www.96boards.org/documentation/consumer/hikey/hikey970/installation/linux-fastboot.md.html     
-与hikey960中的刷录内容有区别，与帖子中的刷录内容也有区别
+与hikey960中的刷录内容有区别，与帖子中的刷录内容也有区别     
 $ sudo fastboot flash ptable prm_ptable.img    
 $ sudo fastboot flash xloader sec_xloader.img    
 $ sudo fastboot flash fastboot l-loader.bin    
