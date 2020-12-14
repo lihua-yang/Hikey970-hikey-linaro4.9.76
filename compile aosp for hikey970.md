@@ -134,8 +134,9 @@ $ fastboot flash userdata userdata.img
        
 刷录遇到的问题
 -------
-（1）刷录各种镜像成功，但是adb找不到设备     
-将$aosp/bootloader/tools-images-hikey970/build_kernel.sh复制到$aosp     
+（1）刷录各种镜像成功，但是adb找不到设备,这也是一种新的生成boot.img的方法    
+#####
+将$aosp/bootloader/tools-images-hikey970/build_kernel.sh复制到$aosp，并将KERNEL_DIR修改为自己存放hikey-linaro的地方，在本次实验中为$aosp/kernel/linux,生成新的boot.img在$aosp/out/target/product/hikey970     
 
 
    
