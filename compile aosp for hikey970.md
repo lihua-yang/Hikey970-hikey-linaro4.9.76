@@ -134,7 +134,8 @@ $ fastboot flash userdata userdata.img
        
 刷录遇到的问题
 -------
-（1）刷录各种镜像成功，但是adb找不到设备
+（1）刷录各种镜像成功，但是adb找不到设备     
+将$aosp/bootloader/tools-images-hikey970/build_kernel.sh复制到$aosp     
 
 
    
