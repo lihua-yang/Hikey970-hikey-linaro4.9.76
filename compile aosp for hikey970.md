@@ -63,7 +63,7 @@ $AOSP_ROOT/bootloader/l-loader/build_uefi.sh hikey970
 -----
 $ cd $AOSP_ROOT/kernel/linux    
 $ export ARCH=arm64    
-$ export CROSS_COMPILE=$AOSP_ROOT/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-    
+$ export CROSS_COMPILE=/mnt/hikey970/aosp/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-    
 $ make hikey970_defconfig && make -j4 Image.gz modules    
 $ make hisilicon/kirin970-hikey970.dtb    
  
