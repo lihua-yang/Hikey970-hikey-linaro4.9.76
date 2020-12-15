@@ -138,6 +138,24 @@ $ fastboot flash userdata userdata.img
 #####
 将$aosp/bootloader/tools-images-hikey970/build_kernel.sh复制到$aosp，并将KERNEL_DIR修改为自己存放hikey-linaro的地方，在本次实验中为$aosp/kernel/linux,生成新的boot.img在$aosp/out/target/product/hikey970       
 
-（2）userdata.img镜像刷录失败，重新调整ptable.img和userdata.img的对应属性，同时将data分区修改为f2fs     
-
+（2）userdata.img镜像刷录失败，重新调整ptable.img和userdata.img的对应属性，同时将data分区修改为f2fs。主要参考以下帖子：   
+https://discuss.96boards.org/t/booting-hikey970-with-f2fs-data-partition/6949      
+修改/mnt/hikey970/aosp/kernel/linux目录下的.config文件，增加如下设置：     
+```
+CONFIG_F2FS_FS=y   
+CONFIG_F2FS_STAT_FS=y   
+CONFIG_F2FS_FS_XATTR=y   
+CONFIG_F2FS_FS_POSIX_ACL=y   
+CONFIG_F2FS_FS_SECURITY=y   
+CONFIG_F2FS_CHECK_FS=y   
+CONFIG_F2FS_FS_ENCRYPTION=y   
+CONFIG_F2FS_IO_TRACE=y   
+CONFIG_F2FS_FAULT_INJECTION=y   
+```
    
+在$aosp/device/linaro/hikey/hikey970/BoardConfig.mk增加
+···
+#add by ylh
+TARGET_USERIMAGES_USE_F2FS := true
+BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
+···    
