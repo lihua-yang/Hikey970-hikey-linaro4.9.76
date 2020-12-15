@@ -172,3 +172,14 @@ BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
 #add by ylh
 TARGET_USERIMAGES_USE_F2FS := true
 ```    
+
+先编译ramdisk.img
+make -j32 ramdisk，并将其拷贝到hikey970目录下
+```
+[100% 704/704] Target ram disk: out/target/product/generic/ramdisk.img
+cp out/target/product/generic/ramdisk.img out/target/product/hikey970/
+```
+再用该ramdisk重新生成boot.img，接着生成其他所有img
+$aosp/./build_kernel.sh
+make -j$(nproc) BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE=f2fs TARGET_USERIMAGES_USE_F2FS=true     、
+新的分区表没有起作用，重启一次    
