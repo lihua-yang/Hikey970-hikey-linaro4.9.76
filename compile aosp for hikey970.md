@@ -173,7 +173,7 @@ BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
 TARGET_USERIMAGES_USE_F2FS := true
 ```    
 
-先编译ramdisk.img
+先编译ramdisk.img     
 make -j32 ramdisk，并将其拷贝到hikey970目录下
 ```
 [100% 704/704] Target ram disk: out/target/product/generic/ramdisk.img
@@ -183,3 +183,12 @@ cp out/target/product/generic/ramdisk.img out/target/product/hikey970/
 $aosp/./build_kernel.sh
 make -j$(nproc) BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE=f2fs TARGET_USERIMAGES_USE_F2FS=true     、
 新的分区表没有起作用，重启一次    
+
+报错  
+```
+target reported max download size of 134217728 bytes
+erasing 'userdata'...
+FAILED (remote: Check device console.)
+finished. total time: 0.006s
+"Update Failed!"
+```
