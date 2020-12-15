@@ -153,9 +153,22 @@ CONFIG_F2FS_IO_TRACE=y
 CONFIG_F2FS_FAULT_INJECTION=y   
 ```
    
-在$aosp/device/linaro/hikey/hikey970/BoardConfig.mk增加
-···
+在$aosp/device/linaro/hikey/hikey970/BoardConfig.mk
+```
 #add by ylh
 TARGET_USERIMAGES_USE_F2FS := true
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
-···    
+```     
+
+修改$aosp/device/linaro/hikey/hikey970/fstab.hikey970
+```
+#/dev/block/sdd15    /data      ext4    discard,noauto_da_alloc,data=ordered,user_xattr,discard,barrier=1    wait
+#modified by ylh
+/dev/block/sdd15    /data      f2fs    discard,noatime,nosuid,nodev                                          wait,check,fileencryption=software,quota
+```
+
+在$aosp/device/linaro/hikey/BoardConfigCommon.mk
+```
+#add by ylh
+TARGET_USERIMAGES_USE_F2FS := true
+```    
