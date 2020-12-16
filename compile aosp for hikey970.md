@@ -179,8 +179,8 @@ TARGET_USERIMAGES_USE_F2FS := true
 先编译ramdisk.img     
 make -j32 ramdisk，并将其拷贝到hikey970目录下
 ```
-[100% 704/704] Target ram disk: out/target/product/generic/ramdisk.img
-cp out/target/product/generic/ramdisk.img out/target/product/hikey970/
+[100% 686/686] Target ram disk: out/target/product/hikey970/ramdisk.img
+#### build completed successfully (30 seconds) ####
 ```
 再用该ramdisk重新生成boot.img，接着生成其他所有img     
 $aosp/./build_kernel.sh     
@@ -195,4 +195,13 @@ FAILED (remote: Check device console.)
 finished. total time: 0.006s
 "Update Failed!"
 ```
-linux/fs/f2fs没有按照预期编译，要修改arch/arm/hikey970_defconfig文件中F2FS的设置，并在.config文件中生成F2FS的设置      
+linux/fs/f2fs没有按照预期编译，要修改arch/arm/hikey970_defconfig文件中F2FS的设置，并在.config文件中生成F2FS的设置    
+
+报错
+```
+PS C:\WINDOWS\system32> adb shell    
+* daemon not running; starting now at tcp:5037    
+* daemon started successfully    
+error: no devices/emulators found    
+```
+怀疑是ptable.img的问题，修改分区表的大小和属性    
