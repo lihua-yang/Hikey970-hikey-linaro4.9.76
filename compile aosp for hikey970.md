@@ -33,13 +33,13 @@ $ ln -sf ../OpenPlatformPkg
 我也有修改交叉编译的路径：
 $ cd $AOSP_ROOT/bootloader/l-loader
 
-$ git diff build_uefi.sh    
-diff --git a/build_uefi.sh b/build_uefi.sh    
-index 3449246..e7e957d 100755    
---- a/build_uefi.sh    
-+++ b/build_uefi.sh    
+$ git diff build_uefi.sh          
+diff --git a/build_uefi.sh b/build_uefi.sh     
+index 3449246..e7e957d 100755     
+--- a/build_uefi.sh     
++++ b/build_uefi.sh      
 @@ -43,7 +43,8 @@ case "${SELECT_GCC}" in    
-        CROSS_COMPILE=aarch64-linux-gnu-    
+        CROSS_COMPILE=aarch64-linux-gnu-     
         ;;    
 "LINARO_GCC_7_1")    
 -       AARCH64_GCC_7_1=/opt/toolchain/gcc-linaro-7.1.1-2017.08-x86_64_aarch64-linux-gnu/bin/   
@@ -92,7 +92,7 @@ ninja: error: 'device/linaro/hikey/hifi/firmware/hifi-hikey970.img', needed by '
 
 ninja: error: 'device/linaro/hikey/ai/configs/kirin970/ai_config.xml', needed by 'out/target/product/hikey970/system/vendor/etc/hiai/default/ai_config.xml', missing and no known rule to make it      办法同上，这次复制的是整个ai文件夹       
 
-编译后没有生成ramdisk.img，按照官方文档编译生成的ramdisk.img在  out/target/product/generic 目录下，复制到out/target/product/hikey970目录下与aosp目录下    
+编译后没有生成ramdisk.img：在编译ramdisk.img之前要lunch hikey970-userdebug在out/target/product/hikey970中生成ramdisk.img生成     
 make -j32 ramdisk
 
 
@@ -195,3 +195,4 @@ FAILED (remote: Check device console.)
 finished. total time: 0.006s
 "Update Failed!"
 ```
+linux/fs/f2fs没有按照预期编译，要修改arch/arm/hikey970_defconfig文件中F2FS的设置，并在.config文件中生成F2FS的设置      
