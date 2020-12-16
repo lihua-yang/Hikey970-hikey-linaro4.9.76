@@ -110,6 +110,7 @@ cp /mnt/hikey970/aosp/boot.img /mnt/hikey970/aosp/out/target/product/hikey970/bo
 $ sudo fastboot flash ptable prm_ptable.img    
 $ sudo fastboot flash xloader sec_xloader.img    
 $ sudo fastboot flash fastboot l-loader.bin    
+fastboot reboot-bootloader     
 $ sudo fastboot flash fip fip.bin    
 $ sudo fastboot flash boot boot.img    
 $ sudo fastboot flash cache cache.img    
