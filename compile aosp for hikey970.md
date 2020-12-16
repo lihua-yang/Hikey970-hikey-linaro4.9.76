@@ -15,11 +15,7 @@ repo init -u https://aosp.tuna.tsinghua.edu.cn/platform/manifest -b android-9.0.
 一般，先在宿舍在镜像源下载最新版本的aosp。repo init -u https://aosp.tuna.tsinghua.edu.cn/platform/manifest      
 进入aosp路径后：    
 git clone https://github.com/96boards-hikey/android-manifest.git -b hikey970_v1.0 .repo/local_manifests       
-repo sync -j8    
-
-获取linaro源码，与hikey960不同，hikey970是放到aosp下面，完成后会有一个叫linux的文件夹    
-$ cd $AOSP_ROOT/kernel     
-$ git clone https://github.com/96boards-hikey/linux.git -b hikey970-v4.9 linux    
+repo sync -j8      
 
 cd /mnt/hikey970/aosp/device/linaro/hikey    
 vim manifest.xml    
@@ -63,11 +59,14 @@ vim build_uefi.sh
         CROSS_COMPILE=aarch64-linux-gnu-    
 ```            
 按以下方法获取linaro gcc   
-$ wget https://releases.linaro.org/components/toolchain/binaries/7.1-2017.08/aarch64-linux-gnu/gcc-linaro-7.1.1-2017.08-x86_64_aarch64-linux-gnu.tar.xz      
-
+$ wget https://releases.linaro.org/components/toolchain/binaries/7.1-2017.08/aarch64-linux-gnu/gcc-linaro-7.1.1-2017.08-x86_64_aarch64-linux-gnu.tar.xz       
 
 生成一些.img和.bin文件
 $AOSP_ROOT/bootloader/l-loader/build_uefi.sh hikey970
+
+获取linaro源码，与hikey960不同，hikey970是放到aosp下面，完成后会有一个叫linux的文件夹      
+$ cd $AOSP_ROOT/kernel      
+$ git clone https://github.com/96boards-hikey/linux.git -b hikey970-v4.9 linux   
 
 编译Hikey-linaro
 -----
