@@ -1,4 +1,4 @@
-compile aosp 9.0 (P) for hikey970
+compile aosp 9.0 (P) for hikey970记录
 =====
 编译AOSP for hikey970
 -----
