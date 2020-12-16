@@ -155,7 +155,7 @@ $ fastboot flash userdata userdata.img
 
 （2）userdata.img镜像刷录失败，重新调整ptable.img和userdata.img的对应属性，同时将data分区修改为f2fs。主要参考以下帖子：   
 https://discuss.96boards.org/t/booting-hikey970-with-f2fs-data-partition/6949      
-修改/mnt/hikey970/aosp/kernel/linux目录下的.config文件，增加如下设置：     
+修改/mnt/hikey970/aosp/kernel/linux目录下的arch/arm64/hikey970_defconfig文件中F2FS的设置，并在.config文件中生成F2FS的设置     
 ```
 CONFIG_F2FS_FS=y   
 CONFIG_F2FS_STAT_FS=y   
@@ -167,6 +167,12 @@ CONFIG_F2FS_FS_ENCRYPTION=y
 CONFIG_F2FS_IO_TRACE=y   
 CONFIG_F2FS_FAULT_INJECTION=y   
 ```
+#add by ylh   
+#https://discuss.96boards.org/t/hikey970-boot-fails-when-source-built-system-img-is-flashed/6622/13    
+CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE=y   
+CONFIG_BUILD_ARM64_APPENDED_KERNEL_IMAGE_NAME=Image.gz-dtb   
+CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE_NAMES="hisilicon/kirin970-hikey970"    
+
    
 在$aosp/device/linaro/hikey/hikey970/BoardConfig.mk
 ```
