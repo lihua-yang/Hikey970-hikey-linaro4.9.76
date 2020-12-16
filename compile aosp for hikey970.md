@@ -70,6 +70,9 @@ $ make hisilicon/kirin970-hikey970.dtb
 $ cp $AOSP_ROOT/kernel/linux/arch/arm64/boot/dts/hisilicon/kirin970-hikey970.dtb $AOSP_ROOT/device/linaro/hikey-kernel/kirin970-hikey970.dtb-4.9    
 $ cp $AOSP_ROOT/kernel/linux/arch/arm64/boot/Image.gz $AOSP_ROOT/device/linaro/hikey-kernel/Image.gz-hikey970-4.9    
 
+source build/envsetup.sh     
+lunch hikey970-userdebug     
+
 lunch hikey970-userdebug时报错：    
 build/make/core/product_config.mk:234: error: Can not locate config makefile for product "hikey970".     
 09:56:10 dumpvars failed with: exit status 1      
@@ -78,7 +81,7 @@ build/make/core/product_config.mk:234: error: Can not locate config makefile for
 frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk:19: error: _nic.PRODUCTS.[[device/linaro/hikey/hikey970.mk]]: "device/linaro/hikey/hikey970/device-hikey970.mk" does not exist.     
 在/mnt/hikey970/aosp/device/linaro/hikey目录下将github上aosp-device-linaro-hikey中的hikey970文件夹复制到此处，总之，缺少的东西想办法补齐   
 
-make -32
+make -j32
 报错：error: 'out/target/product/hikey970/hi3660-hikey960.dtb', needed by 'out/target/product/hikey970/dt.img', missing and no known rule to make it，想办法从device/linaro/hikey-kernel中复制一个过去
 
 ninja: error: 'device/linaro/hikey/init.hikey970.power.rc', needed by 'out/target/product/hikey970/root/init.hikey970.power.rc', missing and no known rule to make it
@@ -179,9 +182,9 @@ make -j32 ramdisk，并将其拷贝到hikey970目录下
 [100% 704/704] Target ram disk: out/target/product/generic/ramdisk.img
 cp out/target/product/generic/ramdisk.img out/target/product/hikey970/
 ```
-再用该ramdisk重新生成boot.img，接着生成其他所有img
-$aosp/./build_kernel.sh
-make -j$(nproc) BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE=f2fs TARGET_USERIMAGES_USE_F2FS=true     、
+再用该ramdisk重新生成boot.img，接着生成其他所有img     
+$aosp/./build_kernel.sh     
+make -j$(nproc) BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE=f2fs TARGET_USERIMAGES_USE_F2FS=true         、
 新的分区表没有起作用，重启一次    
 
 报错  
