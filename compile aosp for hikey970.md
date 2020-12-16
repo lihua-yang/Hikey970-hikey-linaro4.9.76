@@ -222,4 +222,5 @@ PS C:\WINDOWS\system32> adb shell
 * daemon started successfully    
 error: no devices/emulators found    
 ```
-比较发现我生成的boot.img，system.img和userdata.img都比原生Hikey970镜像小很多，总之，编译应该还是失败了。怀疑是ptable.img的问题，修改分区表的大小和属性    
+比较发现我生成的boot.img，system.img和userdata.img都比原生Hikey970镜像小很多，总之，编译应该还是失败了。要特别注意用ramdisk.img来编译boot.img    
+至于分区表的属性和大小，可以直接修改大小，不用修改对应属性      
