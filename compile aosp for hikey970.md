@@ -70,6 +70,8 @@ $ make hisilicon/kirin970-hikey970.dtb
 $ cp $AOSP_ROOT/kernel/linux/arch/arm64/boot/dts/hisilicon/kirin970-hikey970.dtb $AOSP_ROOT/device/linaro/hikey-kernel/kirin970-hikey970.dtb-4.9    
 $ cp $AOSP_ROOT/kernel/linux/arch/arm64/boot/Image.gz $AOSP_ROOT/device/linaro/hikey-kernel/Image.gz-hikey970-4.9    
 
+编译aosp
+===========
 source build/envsetup.sh     
 lunch hikey970-userdebug     
 
