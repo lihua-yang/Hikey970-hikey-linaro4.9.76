@@ -1,5 +1,5 @@
 编译纯粹版
-###########
+================
 编译AOSP    
 ```
  cd /mnt/hikey970/aosp/kernel/linux    
