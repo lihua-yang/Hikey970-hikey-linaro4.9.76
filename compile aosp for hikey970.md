@@ -76,8 +76,8 @@ $ export CROSS_COMPILE=/mnt/hikey970/aosp/prebuilts/gcc/linux-x86/aarch64/aarch6
 $ make hikey970_defconfig && make -j4 Image.gz modules    
 $ make hisilicon/kirin970-hikey970.dtb    
  
-$ cp $AOSP_ROOT/kernel/linux/arch/arm64/boot/dts/hisilicon/kirin970-hikey970.dtb $AOSP_ROOT/device/linaro/hikey-kernel/kirin970-hikey970.dtb-4.9    
-$ cp $AOSP_ROOT/kernel/linux/arch/arm64/boot/Image.gz $AOSP_ROOT/device/linaro/hikey-kernel/Image.gz-hikey970-4.9    
+$ cp /mnt/hikey970/aosp/kernel/linux/arch/arm64/boot/dts/hisilicon/kirin970-hikey970.dtb /mnt/hikey970/aosp/device/linaro/hikey-kernel/kirin970-hikey970.dtb-4.9    
+$ cp /mnt/hikey970/aosp/kernel/linux/arch/arm64/boot/Image.gz /mnt/hikey970/aosp/device/linaro/hikey-kernel/Image.gz-hikey970-4.9    
 
 编译aosp
 ===========
