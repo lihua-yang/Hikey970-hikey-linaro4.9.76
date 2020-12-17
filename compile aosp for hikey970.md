@@ -31,7 +31,7 @@ vim manifest.xml
         </interface>
     </hal>
 ```
-vim /mnt/hikey970/aosp/device/linaro/sepolicy/hostapd.te     
+vim /mnt/hikey970/aosp/device/linaro/hikey/sepolicy/hostapd.te     
 其中关于wifi的设置全部注释掉   
 
 mkdir $AOSP_ROOT/bootloader    
