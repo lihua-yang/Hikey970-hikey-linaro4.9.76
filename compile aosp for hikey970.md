@@ -106,6 +106,18 @@ ninja: error: 'device/linaro/hikey/ai/configs/kirin970/ai_config.xml', needed by
 编译后没有生成ramdisk.img：在编译ramdisk.img之前要lunch hikey970-userdebug在out/target/product/hikey970中生成ramdisk.img生成     
 make -j32 ramdisk
 
+报错：     
+tan@tan-PowerEdge-R730:/mnt/hikey970/aosp$ lunch hikey970-userdebug    
+Traceback (most recent call last):    
+  File "/usr/local/bin/lunch", line 41, in <module>    
+    from lunch import runner    
+  File "/usr/local/lib/python3.6/site-packages/lunch/runner.py", line 73    
+    except ImportError, e:    
+                      ^    
+SyntaxError: invalid syntax    
+在lunch之前要先做source build/envsetup.sh      
+        
+
 
 编译boot.img
 -------
