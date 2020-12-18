@@ -92,7 +92,8 @@ build/make/core/product_config.mk:234: error: Can not locate config makefile for
 frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk:19: error: _nic.PRODUCTS.[[device/linaro/hikey/hikey970.mk]]: "device/linaro/hikey/hikey970/device-hikey970.mk" does not exist.     
 在/mnt/hikey970/aosp/device/linaro/hikey目录下将github上aosp-device-linaro-hikey中的hikey970文件夹复制到此处，总之，缺少的东西想办法补齐   
 
-make -j32
+make -j32    
+make -j$(nproc) BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE=f2fs TARGET_USERIMAGES_USE_F2FS=true     
 报错：error: 'out/target/product/hikey970/hi3660-hikey960.dtb', needed by 'out/target/product/hikey970/dt.img', missing and no known rule to make it，想办法从device/linaro/hikey-kernel中复制一个过去
 
 ninja: error: 'device/linaro/hikey/init.hikey970.power.rc', needed by 'out/target/product/hikey970/root/init.hikey970.power.rc', missing and no known rule to make it
@@ -103,8 +104,10 @@ ninja: error: 'device/linaro/hikey/hifi/firmware/hifi-hikey970.img', needed by '
 
 ninja: error: 'device/linaro/hikey/ai/configs/kirin970/ai_config.xml', needed by 'out/target/product/hikey970/system/vendor/etc/hiai/default/ai_config.xml', missing and no known rule to make it      办法同上，这次复制的是整个ai文件夹       
 
-编译后没有生成ramdisk.img：在编译ramdisk.img之前要lunch hikey970-userdebug在out/target/product/hikey970中生成ramdisk.img生成     
-make -j32 ramdisk
+编译后没有生成ramdisk.img     
+在编译ramdisk.img之前要lunch hikey970-userdebug
+在out/target/product/hikey970中生成ramdisk.img         
+make -j32 ramdisk     
 
 报错：     
 tan@tan-PowerEdge-R730:/mnt/hikey970/aosp$ lunch hikey970-userdebug    
